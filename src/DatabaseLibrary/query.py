@@ -16,29 +16,6 @@ class Query(object):
     """
     Query handles all the querying done by the Database Library. 
     """
-
-    def execute_sql(self, operation, *parameters):
-        """
-        Executes the SQL statement given in `operation`, passing in the given 
-        parameters, which could be used by prepared statements. If the statement
-        yields a result, it is returned.
-        
-        Example:
-        Simple update statement with parameters as part of the operation string.
-        | Execute Sql | UPDATE MYTABLE set FLAG = ${accepted} WHERE ID=${id} |
-        
-        The syntax for parameterized statements is database dependent. Search 
-        Google for "dbapi2 cheat sheet".
-        """
-        cur = None
-        try:
-            cur = self._dbconnection.cursor()
-            result = cur.execute (operation, *parameters);
-            if result is not None:
-                return result.fetchall();
-        finally :
-            if cur :
-                cur.close() 
         
 
     def query(self, selectStatement):

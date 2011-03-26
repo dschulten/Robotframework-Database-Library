@@ -14,11 +14,12 @@
 
 from connection_manager import ConnectionManager
 from query import Query
+from manipulation import Manipulation
 from assertion import Assertion
 
 __version__ = '0.3'
 
-class DatabaseLibrary(ConnectionManager, Query, Assertion):
+class DatabaseLibrary(ConnectionManager, Query, Assertion, Manipulation):
     """
     Database Library contains utilities meant for Robot Framework's usage.
     
