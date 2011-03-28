@@ -40,7 +40,7 @@ class ConnectionManager(object):
         | Connect To Dbapi2 | pymysql | localhost | user | s3cr3t | my_db | 3306 |
 
         | # Using jaydebeapi, set classpath, connect via jdbc driver in Python or Jython |
-        | Set Environment Variable  CLASSPATH  ${CURDIR}/../libraries/ojdbc14-10.2.0.3.0.jar |
+        | Set Environment Variable | CLASSPATH | ${CURDIR}/../libraries/ojdbc14-10.2.0.3.0.jar |
         | Connect To Dbapi2 | jaydebeapi | oracle.jdbc.driver.OracleDriver | jdbc:oracle:thin:@host:port | user | s3cr3t |
 
         """

@@ -33,9 +33,10 @@ class Manipulation(object):
         cur = None
         try:
             cur = self._dbconnection.cursor()
-            result = cur.execute (operation, *parameters);
-            if result is not None:
-                return result.fetchall();
+            cur.execute (operation);
+            if(cur.description is not None):
+                allRows = cur.fetchall()
+                return allRows
         finally :
             if cur :
                 cur.close() 
