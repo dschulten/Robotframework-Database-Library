@@ -55,7 +55,8 @@ class ConnectionManager(object):
         # don't know how to handle config.items so that it can be passed as args
         self._dbconnection = db_api_2.connect (*args);              
         
-    def connect_to_database(self, dbapiModuleName=None, dbName=None, dbUsername=None, dbPassword=None, dbConfigFile="./resources/db.cfg"):
+
+    def connect_to_database(self, dbapiModuleName=None, dbName=None, dbUsername=None, dbPassword=None, dbHost='localhost', dbPort="5432", dbConfigFile="./resources/db.cfg"):
         """
         Loads the DB API 2.0 module given `dbapiModuleName` then uses it to 
         connect to the database using `dbName`, `dbUsername`, and `dbPassword`.
@@ -72,7 +73,7 @@ class ConnectionManager(object):
         
         Example usage:
         | # explicitly specifies all db property values |
-        | Connect To Database | psycopg2 | my_db | postgres | s3cr3t | 
+        | Connect To Database | psycopg2 | my_db | postgres | s3cr3t | tiger.foobar.com | 5432
 
         | # loads all property values from default.cfg |
         | Connect To Database | dbConfigFile=default.cfg | 
@@ -94,9 +95,14 @@ class ConnectionManager(object):
         dbName = dbName or config.get('default', 'dbName')
         dbUsername = dbUsername or config.get('default', 'dbUsername')
         dbPassword = dbPassword or config.get('default', 'dbPassword')
+        dbHost = dbHost or config.get('default', 'dbHost')
+        dbPort = int(dbPort or config.get('default', 'dbPort'))
         
         db_api_2 = __import__(dbapiModuleName);
-        self._dbconnection = db_api_2.connect (database=dbName, user=dbUsername, password=dbPassword)
+        if dbapiModuleName == "MySQLdb":
+            self._dbconnection = db_api_2.connect (db=dbName, user=dbUsername, passwd=dbPassword, host=dbHost, port=dbPort)
+        else:
+            self._dbconnection = db_api_2.connect (database=dbName, user=dbUsername, password=dbPassword, host=dbHost, port=dbPort)
         
     def disconnect_from_database(self):
         """

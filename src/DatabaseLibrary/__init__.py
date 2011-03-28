@@ -17,7 +17,7 @@ from query import Query
 from manipulation import Manipulation
 from assertion import Assertion
 
-__version__ = '0.3'
+__version__ = '0.4'
 
 class DatabaseLibrary(ConnectionManager, Query, Assertion, Manipulation):
     """
