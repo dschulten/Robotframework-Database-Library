@@ -20,8 +20,7 @@ class Query(object):
 
     def query(self, selectStatement):
         """
-        Uses the input `selectStatement` to query for the values that 
-        will be returned as a list of tuples.
+        Uses the input `selectStatement` to query for the values that will be returned as a list of tuples.
         
         Tip: Unless you want to log all column values of the specified rows, 
         try specifying the column names in your select statements 
