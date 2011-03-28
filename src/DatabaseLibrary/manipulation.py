@@ -28,7 +28,7 @@ class Manipulation(object):
         | Execute Sql | UPDATE MYTABLE set FLAG = ${accepted} WHERE ID=${id} |
         
         The syntax for parameterized statements is database dependent. Search 
-        Google for "dbapi2 cheat sheet".
+        Google for "dbapi2 cheat sheet" if you want to pass parameters.
         """
         cur = None
         try:
